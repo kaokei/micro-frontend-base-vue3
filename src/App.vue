@@ -36,17 +36,17 @@ import {
   AppstoreOutlined,
   TeamOutlined,
   ShopOutlined,
-} from "@ant-design/icons-vue";
-import { defineComponent, ref } from "vue";
-import { routes } from "@/router";
-import { useRouter } from "vue-router";
+} from '@ant-design/icons-vue';
+import { defineComponent, ref } from 'vue';
+import { routes } from '@/router';
+import { useRouter } from 'vue-router';
 
 export default defineComponent({
   setup() {
     const currentKeys = ref<string[]>([]);
     const router = useRouter();
 
-    router.afterEach((to) => {
+    router.afterEach(to => {
       currentKeys.value = [to.meta?.pagePath as string];
     });
 
