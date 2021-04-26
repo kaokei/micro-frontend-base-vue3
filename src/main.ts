@@ -1,4 +1,3 @@
-import 'iframe-resizer/js/iframeResizer.contentWindow';
 import '@/utils/initPostBridge';
 
 import { createApp } from 'vue';

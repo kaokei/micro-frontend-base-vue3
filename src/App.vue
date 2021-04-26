@@ -19,6 +19,7 @@
       <a-layout-header class="my-header" />
       <a-layout-content class="my-main">
         <router-view />
+        <div id="all-iframe-container"></div>
       </a-layout-content>
       <a-layout-footer class="my-footer">
         Ant Design ©2018 Created by Ant UED

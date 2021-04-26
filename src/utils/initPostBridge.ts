@@ -4,10 +4,9 @@ import { message } from 'ant-design-vue';
 
 PostBridge.registerMethods({
   pushState(path = '') {
-    const route = router.currentRoute.value;
-    const name = String(route.name);
+    const meta = router.currentRoute.value.meta;
     const newPath1 = path[0] === '/' ? path : '/' + path;
-    const newPath2 = `/subapp/${name}${newPath1}`;
+    const newPath2 = `/subapp/${meta.appName}${newPath1}`;
     router.push(newPath2);
   },
   replaceState(path = '') {
