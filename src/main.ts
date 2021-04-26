@@ -1,10 +1,81 @@
+import 'iframe-resizer/js/iframeResizer.contentWindow';
+import '@/utils/initPostBridge';
+
 import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
-import Antd from 'ant-design-vue';
-import 'ant-design-vue/dist/antd.css';
+
+import {
+  Menu,
+  Tag,
+  Button,
+  DatePicker,
+  Form,
+  Input,
+  Select,
+  Switch,
+  Checkbox,
+  Radio,
+  Divider,
+  Cascader,
+  Spin,
+  Pagination,
+  Empty,
+  Row,
+  Col,
+  Space,
+  Modal,
+  Dropdown,
+  Progress,
+  Table,
+  Tabs,
+  Breadcrumb,
+  Typography,
+  Result,
+  AutoComplete,
+  Upload,
+  Popconfirm,
+  Popover,
+  ConfigProvider,
+  Layout,
+} from 'ant-design-vue';
 
 const app = createApp(App);
-app.use(router);
-app.use(Antd);
+
+[
+  router,
+  Menu,
+  Tag,
+  Button,
+  DatePicker,
+  Form,
+  Input,
+  Select,
+  Switch,
+  Checkbox,
+  Radio,
+  Divider,
+  Cascader,
+  Spin,
+  Pagination,
+  Empty,
+  Row,
+  Col,
+  Space,
+  Modal,
+  Dropdown,
+  Progress,
+  Table,
+  Tabs,
+  Breadcrumb,
+  Typography,
+  Result,
+  AutoComplete,
+  Upload,
+  Popconfirm,
+  Popover,
+  ConfigProvider,
+  Layout,
+].forEach(item => app.use(item));
+
 app.mount('#app');

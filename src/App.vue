@@ -3,7 +3,7 @@
     <a-layout-sider
       :style="{ overflow: 'auto', height: '100vh', position: 'fixed', left: 0 }"
     >
-      <div class="logo" />
+      <div class="logo">微前端演示demo</div>
       <a-menu theme="dark" mode="inline" v-model:selectedKeys="selectedKeys">
         <template v-for="route in routes">
           <a-menu-item :key="route.meta?.pagePath" v-if="route.meta?.pagePath">
@@ -16,11 +16,11 @@
       </a-menu>
     </a-layout-sider>
     <a-layout :style="{ marginLeft: '200px' }">
-      <a-layout-header :style="{ background: '#fff', padding: 0 }" />
-      <a-layout-content :style="{ margin: '24px 16px 0', overflow: 'initial' }">
+      <a-layout-header class="my-header" />
+      <a-layout-content class="my-main">
         <router-view />
       </a-layout-content>
-      <a-layout-footer :style="{ textAlign: 'center' }">
+      <a-layout-footer class="my-footer">
         Ant Design ©2018 Created by Ant UED
       </a-layout-footer>
     </a-layout>
@@ -70,7 +70,29 @@ export default defineComponent({
 <style scoped>
 .logo {
   height: 32px;
+  line-height: 32px;
   background: rgba(255, 255, 255, 0.2);
   margin: 16px;
+  color: #fff;
+  padding-left: 8px;
+  font-size: 18px;
+  border-radius: 2px;
+}
+.my-header {
+  padding: 0;
+  background: #fff;
+}
+.my-main {
+  margin: 16px;
+  overflow: 'initial';
+  min-height: calc(100vh - 166px);
+  background: #fff;
+  padding: 16px;
+  border-radius: 2px;
+}
+.my-footer {
+  text-align: center;
+  color: rgb(240 242 245);
+  background: #41b883;
 }
 </style>
