@@ -1,17 +1,33 @@
 <template>
   <a-layout>
     <a-layout-sider
+      theme="dark"
       :style="{ overflow: 'auto', height: '100vh', position: 'fixed', left: 0 }"
     >
       <div class="logo">微前端演示demo</div>
       <a-menu theme="dark" mode="inline" v-model:selectedKeys="selectedKeys">
-        <template v-for="route in routes">
-          <a-menu-item :key="route.meta?.pagePath" v-if="route.meta?.pagePath">
-            <router-link :to="route.meta?.pagePath">
-              <component :is="route.meta?.icon"></component>
-              <span>{{ route.meta?.title }}</span>
+        <template v-for="menu in menuList">
+          <a-menu-item v-if="menu.pagePath" :key="menu.key">
+            <router-link :to="menu.pagePath">
+              <component :is="menu.icon"></component>
+              <span>{{ menu.title }}</span>
             </router-link>
           </a-menu-item>
+          <a-sub-menu v-else :key="menu.key">
+            <template #title>
+              <span>
+                <component :is="menu.icon"></component>
+                <span>{{ menu.title }}</span>
+              </span>
+            </template>
+            <template v-if="menu.children">
+              <a-menu-item v-for="submenu in menu.children" :key="submenu.key">
+                <router-link :to="submenu.pagePath">
+                  <span>{{ submenu.title }}</span>
+                </router-link>
+              </a-menu-item>
+            </template>
+          </a-sub-menu>
         </template>
       </a-menu>
     </a-layout-sider>
@@ -39,22 +55,64 @@ import {
   ShopOutlined,
 } from '@ant-design/icons-vue';
 import { defineComponent, ref } from 'vue';
-import { routes } from '@/router';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
+
+const menuList = [
+  {
+    key: '1',
+    title: '首页',
+    pagePath: '/',
+    icon: UserOutlined,
+  },
+  {
+    key: '2',
+    title: '关于我',
+    pagePath: '/about',
+    icon: UserOutlined,
+  },
+  {
+    key: '3',
+    title: 'demo-vue3',
+    icon: UserOutlined,
+    children: [
+      {
+        key: '3-1',
+        title: '首页',
+        pagePath: '/subapp/demo-vue3/',
+      },
+      {
+        key: '3-2',
+        title: '关于我',
+        pagePath: '/subapp/demo-vue3/about',
+      },
+    ],
+  },
+];
 
 export default defineComponent({
   setup() {
     const currentKeys = ref<string[]>([]);
     const router = useRouter();
+    const route = useRoute();
 
-    router.afterEach(to => {
-      console.log('to :>> ', to);
-      currentKeys.value = [to.meta?.pagePath as string];
+    router.isReady().then(() => {
+      const path = route.path;
+      menuList.forEach(menu => {
+        if (menu.pagePath === path) {
+          currentKeys.value = [menu.key];
+        } else if (menu.children) {
+          menu.children.forEach(submenu => {
+            if (submenu.pagePath === path) {
+              currentKeys.value = [menu.key, submenu.key];
+            }
+          });
+        }
+      });
     });
 
     return {
       selectedKeys: currentKeys,
-      routes,
+      menuList,
     };
   },
   components: {
