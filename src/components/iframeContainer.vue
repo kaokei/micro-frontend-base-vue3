@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, onBeforeUnmount, nextTick } from 'vue';
+import { defineComponent, onMounted, onBeforeUnmount } from 'vue';
 import {
   onBeforeRouteUpdate,
   useRoute,
@@ -15,6 +15,10 @@ const PUBLIC_PATH = {
   'demo-vue3': {
     localhost: 'http://localhost:8081/',
     vercel: 'https://vue3-subapp.vercel.app/',
+  },
+  'demo-vue2': {
+    localhost: 'http://localhost:8082/',
+    vercel: 'https://vue2-subapp.vercel.app/',
   },
 } as Record<string, { localhost: string; vercel: string }>;
 

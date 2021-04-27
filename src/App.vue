@@ -87,6 +87,23 @@ const menuList = [
       },
     ],
   },
+  {
+    key: '4',
+    title: 'demo-vue2',
+    icon: UserOutlined,
+    children: [
+      {
+        key: '4-1',
+        title: '首页',
+        pagePath: '/subapp/demo-vue2/',
+      },
+      {
+        key: '4-2',
+        title: '关于我',
+        pagePath: '/subapp/demo-vue2/about',
+      },
+    ],
+  },
 ];
 
 export default defineComponent({
