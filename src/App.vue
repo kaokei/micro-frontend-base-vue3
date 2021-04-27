@@ -104,6 +104,28 @@ const menuList = [
       },
     ],
   },
+  {
+    key: '5',
+    title: 'demo-react',
+    icon: UserOutlined,
+    children: [
+      {
+        key: '5-1',
+        title: 'Home',
+        pagePath: '/subapp/demo-react/',
+      },
+      {
+        key: '5-2',
+        title: 'About',
+        pagePath: '/subapp/demo-react/about',
+      },
+      {
+        key: '5-3',
+        title: 'Dashboard',
+        pagePath: '/subapp/demo-react/dashboard',
+      },
+    ],
+  },
 ];
 
 export default defineComponent({
@@ -162,14 +184,18 @@ export default defineComponent({
 .my-main {
   margin: 16px;
   overflow: 'initial';
-  min-height: calc(100vh - 166px);
   background: #fff;
   padding: 16px;
   border-radius: 2px;
+  min-height: calc(100vh - 166px);
 }
 .my-footer {
   text-align: center;
   color: rgb(240 242 245);
   background: #41b883;
+}
+
+#all-iframe-container ::v-deep(iframe) {
+  min-height: calc(100vh - 204px);
 }
 </style>

@@ -20,6 +20,10 @@ const PUBLIC_PATH = {
     localhost: 'http://localhost:8082/',
     vercel: 'https://vue2-subapp.vercel.app/',
   },
+  'demo-react': {
+    localhost: 'http://localhost:8083/',
+    vercel: 'https://react-subapp.vercel.app/',
+  },
 } as Record<string, { localhost: string; vercel: string }>;
 
 export default defineComponent({
