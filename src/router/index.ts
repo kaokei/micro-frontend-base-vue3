@@ -35,11 +35,9 @@ export const routes: Array<RouteRecordRaw> = [
     },
   },
   {
-    path: '/subapp/demo-vue3/:path(.*)',
+    path: '/subapp/:appName/:path(.*)',
     component: () => import('../components/iframeContainer.vue'),
     meta: {
-      appName: 'demo-vue3',
-      publicPath: `http://localhost:8081/`,
       pagePath: '/subapp/demo-vue3/',
       title: 'demo-vue3',
       icon: UserOutlined,

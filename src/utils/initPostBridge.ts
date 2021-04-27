@@ -1,20 +1,27 @@
-import PostBridge from './postBridge';
+import { PostBridge } from '@kaokei/post-bridge';
 import router from '../router';
 import { message } from 'ant-design-vue';
 
 PostBridge.registerMethods({
-  pushState(path = '') {
-    const meta = router.currentRoute.value.meta;
-    const newPath1 = path[0] === '/' ? path : '/' + path;
-    const newPath2 = `/subapp/${meta.appName}${newPath1}`;
-    router.push(newPath2);
+  pushState(route = {} as SafeAny) {
+    if (route.appName && route.path) {
+      const path = route.path;
+      const newPath1 = path[0] === '/' ? path : '/' + path;
+      const newPath2 = `/subapp/${route.appName}${newPath1}`;
+      router.push(newPath2);
+    } else {
+      throw new Error('没有提供appName和path');
+    }
   },
-  replaceState(path = '') {
-    const route = router.currentRoute.value;
-    const name = String(route.name);
-    const newPath1 = path[0] === '/' ? path : '/' + path;
-    const newPath2 = `/subapp/${name}${newPath1}`;
-    router.replace(newPath2);
+  replaceState(route = {} as SafeAny) {
+    if (route.appName && route.path) {
+      const path = route.path;
+      const newPath1 = path[0] === '/' ? path : '/' + path;
+      const newPath2 = `/subapp/${route.appName}${newPath1}`;
+      router.push(newPath2);
+    } else {
+      throw new Error('没有提供appName和path');
+    }
   },
   go(args: SafeAny) {
     router.go(args);

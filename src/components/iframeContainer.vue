@@ -9,16 +9,28 @@ import {
   useRoute,
   RouteLocationNormalized,
 } from 'vue-router';
-import { IframeManager } from '@/utils/iframe.manager';
+import { IframeManager } from '@kaokei/iframe-manager';
+
+const PUBLIC_PATH = {
+  'demo-vue3': {
+    localhost: 'http://localhost:8081/',
+    vercel: 'https://vue3-subapp.vercel.app/',
+  },
+} as Record<string, { localhost: string; vercel: string }>;
 
 export default defineComponent({
   setup() {
     let manager: IframeManager;
+    const hostType =
+      location.host.indexOf('localhost') >= 0 ? 'localhost' : 'vercel';
 
     const createRouteMeta = (route: RouteLocationNormalized) => {
-      const meta = route.meta;
-      meta.path = route.params.path;
-      return meta;
+      const appName = route.params.appName as string;
+      return {
+        appName: appName,
+        path: route.params.path as string,
+        publicPath: PUBLIC_PATH[appName][hostType],
+      };
     };
 
     onBeforeUnmount(() => {
@@ -27,12 +39,15 @@ export default defineComponent({
 
     onMounted(() => {
       manager = new IframeManager('#all-iframe-container');
-      manager.sync(createRouteMeta(useRoute()));
+      const route = useRoute();
+      const meta = createRouteMeta(route);
+      manager.sync(meta);
     });
 
     onBeforeRouteUpdate(to => {
-      console.log('onBeforeRouteUpdate to :>> ', to);
-      if (to.meta && to.meta.appName && to.meta.publicPath) {
+      console.log('enter onBeforeRouteUpdate :>> ', to);
+      if (to.params && to.params.appName) {
+        console.log('onBeforeRouteUpdate to :>> ', to);
         manager.sync(createRouteMeta(to));
       }
     });

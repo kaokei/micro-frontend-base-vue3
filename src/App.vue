@@ -48,6 +48,7 @@ export default defineComponent({
     const router = useRouter();
 
     router.afterEach(to => {
+      console.log('to :>> ', to);
       currentKeys.value = [to.meta?.pagePath as string];
     });
 
