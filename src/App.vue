@@ -215,7 +215,7 @@ export default defineComponent({
 }
 .my-main {
   margin: 16px;
-  overflow: 'initial';
+  overflow: initial;
   background: #fff;
   padding: 16px;
   border-radius: 2px;
@@ -229,5 +229,16 @@ export default defineComponent({
 
 #all-iframe-container ::v-deep(iframe) {
   min-height: calc(100vh - 204px);
+}
+</style>
+
+<style>
+.fixed-iframe {
+  position: fixed;
+  z-index: 9;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
 }
 </style>
