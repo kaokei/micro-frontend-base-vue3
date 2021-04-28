@@ -8,7 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@kaokei/iframe-manager": "^1.0.3",
+    "@kaokei/iframe-manager": "^1.0.4",
     "@kaokei/post-bridge": "^1.0.0",
     "@types/iframe-resizer": "^3.5.8",
     "ant-design-vue": "^2.1.2",

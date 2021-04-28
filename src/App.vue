@@ -178,8 +178,7 @@ export default defineComponent({
     });
 
     onMounted(() => {
-      let im = new IframeManager('#all-iframe-container');
-      im.preload(PRELOAD_IFRAME);
+      IframeManager.preload('#all-iframe-container', PRELOAD_IFRAME);
     });
 
     return {
