@@ -28,6 +28,10 @@ npm run lint
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
+## 项目首页
+
+[网址](https://vue3-base.vercel.app/)
+
 ## 特点
 
 [参考这篇文章](https://www.yuque.com/kuitos/gky7yw/gesexv)
