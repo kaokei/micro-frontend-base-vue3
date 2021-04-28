@@ -11,38 +11,18 @@ import {
 } from 'vue-router';
 import { IframeManager } from '@kaokei/iframe-manager';
 
-const PUBLIC_PATH = {
-  'demo-vue3': {
-    localhost: 'http://localhost:8081/',
-    vercel: 'https://vue3-subapp.vercel.app/',
-  },
-  'demo-vue2': {
-    localhost: 'http://localhost:8082/',
-    vercel: 'https://vue2-subapp.vercel.app/',
-  },
-  'demo-react': {
-    localhost: 'http://localhost:8083/',
-    vercel: 'https://react-subapp.vercel.app/',
-  },
-  'demo-angular': {
-    localhost: 'http://localhost:4200/',
-    vercel: 'https://angular-subapp.vercel.app/',
-  },
-} as Record<string, { localhost: string; vercel: string }>;
+import { PUBLIC_PATH } from '../utils/publicPath';
 
 export default defineComponent({
   setup() {
     let manager: IframeManager;
-    const hostType =
-      location.host.indexOf('localhost') >= 0 ? 'localhost' : 'vercel';
 
     const createRouteMeta = (route: RouteLocationNormalized) => {
       const appName = route.params.appName as string;
       return {
         appName: appName,
         path: route.params.path as string,
-        publicPath: PUBLIC_PATH[appName][hostType],
-        disableIframeResizer: appName === 'demo-angular' ? true : false,
+        publicPath: PUBLIC_PATH[appName],
       };
     };
 

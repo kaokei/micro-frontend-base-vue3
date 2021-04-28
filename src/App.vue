@@ -54,8 +54,10 @@ import {
   TeamOutlined,
   ShopOutlined,
 } from '@ant-design/icons-vue';
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+import { PRELOAD_IFRAME } from '@/utils/publicPath';
+import { IframeManager } from '@kaokei/iframe-manager';
 
 const menuList = [
   {
@@ -173,6 +175,11 @@ export default defineComponent({
           });
         }
       });
+    });
+
+    onMounted(() => {
+      let im = new IframeManager('#all-iframe-container');
+      im.preload(PRELOAD_IFRAME);
     });
 
     return {
