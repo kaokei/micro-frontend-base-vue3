@@ -24,6 +24,10 @@ const PUBLIC_PATH = {
     localhost: 'http://localhost:8083/',
     vercel: 'https://react-subapp.vercel.app/',
   },
+  'demo-angular': {
+    localhost: 'http://localhost:4200/',
+    vercel: 'https://angular-subapp.vercel.app/',
+  },
 } as Record<string, { localhost: string; vercel: string }>;
 
 export default defineComponent({
@@ -38,6 +42,7 @@ export default defineComponent({
         appName: appName,
         path: route.params.path as string,
         publicPath: PUBLIC_PATH[appName][hostType],
+        disableIframeResizer: appName === 'demo-angular' ? true : false,
       };
     };
 

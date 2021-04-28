@@ -126,6 +126,33 @@ const menuList = [
       },
     ],
   },
+  {
+    key: '6',
+    title: 'demo-angular',
+    icon: UserOutlined,
+    children: [
+      {
+        key: '6-1',
+        title: 'Welcome',
+        pagePath: '/subapp/demo-angular/welcome',
+      },
+      {
+        key: '6-2',
+        title: 'Monitor',
+        pagePath: '/subapp/demo-angular/welcome/monitor',
+      },
+      {
+        key: '6-3',
+        title: 'Workplace',
+        pagePath: '/subapp/demo-angular/welcome/workplace',
+      },
+      {
+        key: '6-4',
+        title: 'Form',
+        pagePath: '/subapp/demo-angular/form',
+      },
+    ],
+  },
 ];
 
 export default defineComponent({
