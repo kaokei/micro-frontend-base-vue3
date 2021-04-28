@@ -55,7 +55,7 @@ import {
   ShopOutlined,
 } from '@ant-design/icons-vue';
 import { defineComponent, ref } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
+import { useRouter } from 'vue-router';
 
 const menuList = [
   {
@@ -132,10 +132,9 @@ export default defineComponent({
   setup() {
     const currentKeys = ref<string[]>([]);
     const router = useRouter();
-    const route = useRoute();
 
-    router.isReady().then(() => {
-      const path = route.path;
+    router.afterEach(to => {
+      const path = to.path;
       menuList.forEach(menu => {
         if (menu.pagePath === path) {
           currentKeys.value = [menu.key];

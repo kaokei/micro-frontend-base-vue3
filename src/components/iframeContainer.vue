@@ -46,18 +46,14 @@ export default defineComponent({
     });
 
     onMounted(() => {
-      console.time('onMounted');
       manager = new IframeManager('#all-iframe-container');
       const route = useRoute();
       const meta = createRouteMeta(route);
       manager.sync(meta);
-      console.timeEnd('onMounted');
     });
 
     onBeforeRouteUpdate(to => {
-      console.log('enter onBeforeRouteUpdate :>> ', to);
       if (to.params && to.params.appName) {
-        console.log('onBeforeRouteUpdate to :>> ', to);
         manager.sync(createRouteMeta(to));
       }
     });
